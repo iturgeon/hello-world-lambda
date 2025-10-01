@@ -7,7 +7,13 @@ These images will be perfect as placeholders, but will also serve as an example 
 
 ## Nodejs
 
-<https://hub.docker.com/r/iturgeon/hello-world-lambda>
+You can run these directly from builds on Docker Hub published here <https://hub.docker.com/r/iturgeon/hello-world-lambda>
+
+```
+docker run -p 9000:8080 iturgeon/hello-world-lambda:node-alpine
+or
+docker run -p 9000:8080 iturgeon/hello-world-lambda:node-aws-lambda
+```
 
 ## Sending a request to the RIE
 
@@ -22,8 +28,15 @@ curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d
 
 size: 410MB
 
+### Build
+
 ```
 docker buildx build -t hello-world:node-aws-lambda --load -f ./node-aws-lambda.Dockerfile .
+```
+
+### Run your build
+
+```
 docker run --rm -p 9000:8080 hello-world:node-aws-lambda
 
 ```
